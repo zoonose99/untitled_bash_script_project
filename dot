@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo '*dot 0.1*'
+echo 'Input:'
+read -r INPUT
+echo "${INPUT}"
+
+exit
