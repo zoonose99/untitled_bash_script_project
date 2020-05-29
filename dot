@@ -1,8 +1,77 @@
-#!/bin/sh
+#!/bin/bash
+
+#default_shabang
+#default_name
+
+## VARIABLES/CONSTANTS
+std_opts='helper verbose debugging quiet logging tester version timelog save&quit quit'
+PS3='Select : '
+
+wizard() {
+    echo "Welcome to the script creation wizard. Please type input or hit enter for default."
+    read -rp 'Shabang/shell type (default: #!/bin/sh): ' shabang
+    read -rp 'Script name (default: "default"): ' name
+    read -rp 'Description (default: none): ' description
+    read -rp 'Credit/author (default: "anonymous"): ' author
+    read -rp 'License (default: none): ' license
+    read -rp 'Notes (default: none): ' notes
+    echo 'Enter a number to toggle these standard options:'
+
+select name in $std_opts
+do
+if [ $name == 'quit' ]
+then
+break
+fi
+echo Hello $name
+done
+
+    # PS3= 'Choose from the following options: '
+    #     select name in $std_opt_array
+    #     do
+    #     if [ $name == 'Quit' ]
+    #     then
+    #     break
+    #     fi
+    #     echo Hello $name
+    #     done
+}
+#     echo '(Enter each letter of your choice in any order. Default: none): '
+#     for i in "${std_opt_array[@]}"
+#     do
+#         echo 
+#         echo "  ...$i?"
+#     done
+# }
 
 echo '*dot 0.1*'
-echo 'Input:'
-read -r INPUT
-echo "${INPUT}"
+
+for arg in "$@"
+do
+    if [ "$arg" == "--wizard" ] || [ "$arg" == "-w" ]
+    then
+        wizard
+    fi
+done
+
+
+# FOO=${VARIABLE:=default}
+#FOO=${VARIABLE:-default}  # If variable not set or null, use default.
+#Or, which will assign default to VARIABLE as well:
+
+#FOO=${VARIABLE:=default}  # If variable not set or null, set it to default.
 
 exit
+
+# create a variable to hold the input
+read -p "Please enter something: " userInput
+
+# Check if string is empty using -z. For more 'help test'    
+# if [[ -z "$userInput" ]]; then
+#    printf '%s\n' "No input entered"
+#    exit 1
+# else
+#    # If userInput is not empty show what the user typed in and run ls -l
+#    printf "You entered %s " "$userInput"
+#    ls -l
+# fi
