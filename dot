@@ -26,6 +26,11 @@ fi
 echo Hello $name
 done
 
+noise training ie for regex false positives
+ poetics based on regex
+
+ 
+
     # PS3= 'Choose from the following options: '
     #     select name in $std_opt_array
     #     do
@@ -43,6 +48,24 @@ done
 #         echo "  ...$i?"
 #     done
 # }
+
+# case "$string" in 
+#   *foo*)
+#     # Do stuff
+#     ;;
+# esac
+
+# string='My string';
+
+# if [[ $string =~ "My" ]]
+# then
+#    echo "It's there!"
+# fi
+
+# string='My long string'
+# if [[ $string == *"My long"* ]]; then
+#   echo "It's there!"
+# fi
 
 echo '*dot 0.1*'
 
