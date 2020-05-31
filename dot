@@ -1,100 +1,81 @@
 #!/bin/bash
 
-#default_shabang
-#default_name
+function toggle () {
+    echo '$1:' "$1"
+    if (($1)) # Test for true
+    then
+    echo "$1 true"
+    declare "$1"=0 # set matching varFlag to "false" ie zero
+    echo "removed $1 option"
+    return
+    fi
 
-## VARIABLES/CONSTANTS
-std_opts='helper verbose debugging quiet logging tester version timelog save&quit quit'
-PS3='Select : '
-
-wizard() {
-    echo "Welcome to the script creation wizard. Please type input or hit enter for default."
-    read -rp 'Shabang/shell type (default: #!/bin/sh): ' shabang
-    read -rp 'Script name (default: "default"): ' name
-    read -rp 'Description (default: none): ' description
-    read -rp 'Credit/author (default: "anonymous"): ' author
-    read -rp 'License (default: none): ' license
-    read -rp 'Notes (default: none): ' notes
-    echo 'Enter a number to toggle these standard options:'
-
-select name in $std_opts
-do
-if [ $name == 'quit' ]
-then
-break
-fi
-echo Hello $name
-done
-
-noise training ie for regex false positives
- poetics based on regex
-
- 
-
-    # PS3= 'Choose from the following options: '
-    #     select name in $std_opt_array
-    #     do
-    #     if [ $name == 'Quit' ]
-    #     then
-    #     break
-    #     fi
-    #     echo Hello $name
-    #     done
+    if ! (($1)) # Test for False
+    then
+    echo "$1 false"
+    declare "$1"=1 # set matching varFlag to "true" ie one
+    echo "$1"
+    echo "included $1 option"
+    return
+    fi
+    
 }
-#     echo '(Enter each letter of your choice in any order. Default: none): '
-#     for i in "${std_opt_array[@]}"
-#     do
-#         echo 
-#         echo "  ...$i?"
-#     done
-# }
+
+## Main Loop
+echo 'Shell script creation wizard v0.1'
+    # read -rp 'Shabang/shell type (default: #!/bin/sh): ' shabang
+    # read -rp 'Script name (default: "default"): ' name
+    # read -rp 'Description (default: none): ' description
+    # read -rp 'Credit/author (default: "anonymous"): ' author
+    # read -rp 'License (default: none): ' license
+    # read -rp 'Notes (default: none): ' notes
+    echo 'Enter a number to toggle these standard options:'
+    std_opts='helper verbose debugging quiet logging tester version timelog reset save&quit'
+    PS3='Select : '
+    select name in $std_opts
+    do
+        # case $std_opts in
+        #     "$name")
+        #     echo "$name"
+        #     ;;
+        # esac
+        if [[ $std_opts =~ $name ]]; then
+            case $name in
+                quit)
+                break;;
+                *)
+                echo "$name has not yet been implemented"
+            esac
+        fi    
+
+        # "incl_$name"=       
+        # if [ "$name" == 'quit' ]
+        # then
+        # break
+        # fi
+        # flip "$name"
+    done
 
 # case "$string" in 
 #   *foo*)
-#     # Do stuff
+#     
 #     ;;
 # esac
-
-# string='My string';
-
-# if [[ $string =~ "My" ]]
-# then
-#    echo "It's there!"
-# fi
 
 # string='My long string'
 # if [[ $string == *"My long"* ]]; then
 #   echo "It's there!"
 # fi
 
-echo '*dot 0.1*'
+# case expression in
+#     pattern1 )
+#         statements ;;
+#     pattern2 )
+#         statements ;;
+#     ...
+# esac
 
-for arg in "$@"
-do
-    if [ "$arg" == "--wizard" ] || [ "$arg" == "-w" ]
-    then
-        wizard
-    fi
-done
-
-
-# FOO=${VARIABLE:=default}
-#FOO=${VARIABLE:-default}  # If variable not set or null, use default.
-#Or, which will assign default to VARIABLE as well:
-
-#FOO=${VARIABLE:=default}  # If variable not set or null, set it to default.
 
 exit
 
-# create a variable to hold the input
-read -p "Please enter something: " userInput
 
-# Check if string is empty using -z. For more 'help test'    
-# if [[ -z "$userInput" ]]; then
-#    printf '%s\n' "No input entered"
-#    exit 1
-# else
-#    # If userInput is not empty show what the user typed in and run ls -l
-#    printf "You entered %s " "$userInput"
-#    ls -l
-# fi
