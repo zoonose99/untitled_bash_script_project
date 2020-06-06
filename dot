@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Constants
+standard_options=('helper' 'verbose' 'debugging' 'quiet' 'logging' 'tester' 'version' 'timelog' 'reset' 'save&quit')
+
 function toggle () {
     echo '$1:' "$1"
     if (($1)) # Test for true
@@ -30,6 +33,7 @@ echo 'Shell script creation wizard v0.1'
     # read -rp 'License (default: none): ' license
     # read -rp 'Notes (default: none): ' notes
     echo 'Enter a number to toggle these standard options:'
+
     std_opts='helper verbose debugging quiet logging tester version timelog reset save&quit'
     PS3='Select : '
     select name in $std_opts
